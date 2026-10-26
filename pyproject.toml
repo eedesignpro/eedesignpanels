@@ -1,0 +1,56 @@
+[build-system]
+# Bounded on purpose. hatchling 1.32.0 raised its default metadata version from 2.4 to 2.5, and
+# twine 6.1.0 refuses anything above 2.4 before it makes a network call. An
+# unbounded requirement therefore fails the upload whatever the credential.
+# Raise this bound only together with the twine pin.
+requires = ["hatchling>=1.27,<1.32"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eedesignpanels"
+version = "0.1.0"
+description = "Headless, reproducible fabrication panel builder for KiCad 10 boards"
+# The registry page is the first thing anybody sees of this package, and twine
+# warns about the empty one.
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+dependencies = [
+    # The board library: every stage reads and writes the board through it.
+    "eedesigncore==0.38.0",
+    # config.py and preview/actions.py import it directly. The pin is the
+    # version eedesigncore 0.38.0 resolves to, inside its own range.
+    "pydantic==2.14.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/eedesignpro/eedesignpanels"
+Repository = "https://github.com/eedesignpro/eedesignpanels"
+Issues = "https://github.com/eedesignpro/eedesignpanels/issues"
+
+[project.optional-dependencies]
+# The gerber comparison harness (eedesignpanels.verify). Development only: it
+# is a verification tool and never reaches KiCad's bundled interpreter.
+# Pinned exactly all the same.
+verify = [
+    # Stock gerbonara, the newest release. eedesignpanels.verify prints that a
+    # comparison needs a build with finer SVG number formats. No
+    # released gerbonara has that change yet, so this extra cannot install it.
+    "gerbonara==1.6.3",
+    "resvg-py==0.5.0",
+    "pillow==12.3.0",
+]
+
+[project.scripts]
+# The command starts with the package name. Python packages install their
+# commands into one shared folder, and a general name can collide there.
+eedesignpanels = "eedesignpanels.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eedesignpanels"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/tools", "/docs", "/README.md", "/pyproject.toml"]

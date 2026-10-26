@@ -1,0 +1,14 @@
+# Local test boards, rendered previews, and disposable release environments.
+/scratch/
+
+# Python build and tool output.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage

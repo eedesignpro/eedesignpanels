@@ -1,0 +1,11 @@
+# Local review output. Never committed, never packaged.
+#
+# scratch/ holds human-viewable artifacts (SVG, HTML, PNG, reports) written
+# while work is in progress, one subfolder per task:
+#     scratch/YYYYMMDD_HHMMSS_<title>/
+# It sits outside the MEMBERS of tools/build_package_file.py, so it can
+# never ship.
+scratch/
+
+# Package files written by tools/build_package_file.py.
+dist/

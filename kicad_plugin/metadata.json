@@ -1,0 +1,31 @@
+{
+  "$schema": "https://go.kicad.org/pcm/schemas/v2",
+  "name": "eedesignpanels",
+  "description": "Builds a fabrication panel from the open board.",
+  "description_full": "Builds a fabrication panel from the open board: router tool path, panel assembly, cuts and v-scoring, tooling holes, fiducials and rail copper.\n\nOn its first run the plugin installs its engine and the eedesigncore board library for the current user, with the Python that comes with KiCad. It downloads them from their public release tags, or takes them from a local folder of wheel files for an offline install.\n\nTested on Windows. Provided as is, with no support.",
+  "identifier": "com.github.eedesignpro.eedesignpanels",
+  "type": "plugin",
+  "author": {
+    "name": "eedesignpro",
+    "contact": {
+      "web": "https://github.com/eedesignpro/eedesignpanels"
+    }
+  },
+  "maintainer": {
+    "name": "eedesignpro",
+    "contact": {
+      "web": "https://github.com/eedesignpro/eedesignpanels"
+    }
+  },
+  "license": "GPL-3.0-or-later",
+  "resources": {
+    "homepage": "https://github.com/eedesignpro/eedesignpanels"
+  },
+  "versions": [
+    {
+      "version": "0.1.0",
+      "status": "development",
+      "kicad_version": "10.0"
+    }
+  ]
+}
